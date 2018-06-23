@@ -22,9 +22,9 @@ with sr.Microphone() as source:
         print("######### CALIBARATING NOISE LEVEL #############")
         rs.adjust_for_ambient_noise(source,duration=float(5))
         print('Speak ALFRED is listening......')
-        #for male or female voice
-        for voice in voices:
-            engine.setProperty('voice', voice.id)
+        #for female voice uncomment these below 2 lines
+        #for voice in voices:
+        #    engine.setProperty('voice', voice.id)
         engine.say("I am Listening")
         engine.runAndWait()
         spoken_text = rs.listen(source)
@@ -41,3 +41,6 @@ with sr.Microphone() as source:
 
         except:
             print('A.L.F.R.E.D could\'t understand what you said')
+            engine.say("Sorry,I couldnot understand what you have said")
+            engine.runAndWait()
+            spoken_text = rs.listen(source)
