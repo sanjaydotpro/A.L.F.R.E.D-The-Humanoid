@@ -43,4 +43,4 @@ with sr.Microphone() as source:
             print('A.L.F.R.E.D could\'t understand what you said')
             engine.say("Sorry,I couldnot understand what you have said")
             engine.runAndWait()
-            spoken_text = rs.listen(source)
+            
