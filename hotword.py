@@ -1,6 +1,6 @@
 import snowboydecoder
 import importlib
-
+import os
 
 def detected_callback():
     print "hotword detected"

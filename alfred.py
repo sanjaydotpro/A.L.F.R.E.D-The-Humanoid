@@ -54,16 +54,16 @@ def order_for_alfred():
         while True:
             print("######### CALIBARATING NOISE LEVEL #############")
             rs.adjust_for_ambient_noise(source,duration=float(2))
-	    
+	    os.system("aplay /home/adhanai1419/Documents/Pythonprojects/A.L.F.R.E.D-THEHUMANOIDROBOT/resources/ding.wav")
 	    #GTTS
-	    tts = gTTS(text=ran.choice(opening_phrases), lang='en')	
+	    tts = gTTS(ran.choice(opening_phrases))	
 	    tts.save("GTTSAudio.mp3")
 	    os.system('mpg321 GTTSAudio.mp3 -quiet')	
 
             audi = rs.listen(source)
 
             #GTTS
-	    tts = gTTS(text=ran.choice(command_acknowledgement), lang='en')	
+	    tts = gTTS(ran.choice(command_acknowledgement))	
 	    tts.save("GTTSAudio.mp3")
 	    os.system('mpg321 GTTSAudio.mp3 -quiet')
 
@@ -74,20 +74,20 @@ def order_for_alfred():
                 print(text_recieved)
             except sr.UnknownValueError:
 		#GTTS
-		tts = gTTS(text="Beg your pardon, sir", lang='en')	
+		tts = gTTS("Beg your pardon, sir")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 continue
             except sr.RequestError:
 		#GTTS
-		tts = gTTS(text="Unable to make request to google check your internet connection", lang='en')	
+		tts = gTTS("Unable to make request to google check your internet connection")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 continue
             
             if text_recieved.lower() in exit_when_done:
 		#GTTS
-		tts = gTTS(text="Exiting Now", lang='en')	
+		tts = gTTS("Exiting Now")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 break
@@ -98,7 +98,7 @@ def order_for_alfred():
                 ctr = rmpf.play_random_music()
                 if ctr == 1:
 		    #GTTS
-		    tts = gTTS(text="Hope You like it", lang='en')	
+		    tts = gTTS("Hope You like it")	
 		    tts.save("GTTSAudio.mp3")
 		    os.system('mpg321 GTTSAudio.mp3 -quiet')
                     break
@@ -110,13 +110,13 @@ def order_for_alfred():
                 answer = wf.wolframalpha_questions(text_recieved)
                 if answer == 0 or answer == 'none':
 		    #GTTS
-		    tts = gTTS(text="Sorry, I dont know about it.", lang='en')	
+		    tts = gTTS("Sorry, I dont know about it.")	
 		    tts.save("GTTSAudio.mp3")
 		    os.system('mpg321 GTTSAudio.mp3 -quiet')
                     break
                 else:
 		    #GTTS
-		    tts = gTTS(text=answer, lang='en')	
+		    tts = gTTS(answer)	
 		    tts.save("GTTSAudio.mp3")
 		    os.system('mpg321 GTTSAudio.mp3 -quiet')
                     break
@@ -126,7 +126,7 @@ def order_for_alfred():
                 short_summary = wkf.get_short_summary(topic)
                 print(short_summary)
 		#GTTS
-		tts = gTTS(text="Showing results on your screen,Sir", lang='en')	
+		tts = gTTS("Showing results on your screen,Sir")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 break
@@ -135,7 +135,7 @@ def order_for_alfred():
             elif finl_task == 'browser':
                 bf.browser_search(text_recieved)
 		#GTTS
-		tts = gTTS(text="Showing search result on the browser,Sir", lang='en')	
+		tts = gTTS("Showing search result on the browser,Sir")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 break
@@ -143,7 +143,7 @@ def order_for_alfred():
             elif finl_task == 'youtube':
                 yf.open_video_youtube(text_recieved)
 		#GTTS
-		tts = gTTS(text="Opening the results on your browser,Sir.", lang='en')	
+		tts = gTTS("Opening the results on your browser,Sir.")	
 		tts.save("GTTSAudio.mp3")
 		os.system('mpg321 GTTSAudio.mp3 -quiet')
                 break
@@ -154,11 +154,11 @@ def order_for_alfred():
                     nap.get_by_category(news_name)
                 elif news_cat == 'from':
                     nap.get_by_source(news_name)
-                elif news_cat == 'on':
+                elif news_cat == 'on' or news_cat == 'of':
                     nap.get_by_query(news_name)
                 else:
 		    #GTTS
-		    tts = gTTS(text="Sorry, Sir I couldn\'t find any relevant news", lang='en')	
+		    tts = gTTS("Sorry, Sir I couldn\'t find any relevant news")	
 		    tts.save("GTTSAudio.mp3")
 		    os.system('mpg321 GTTSAudio.mp3 -quiet')
                 break

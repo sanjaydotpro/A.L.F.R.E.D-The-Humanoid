@@ -17,17 +17,17 @@ from nltk.tokenize import word_tokenize as wtk
 
 cwd = os.getcwd()
 os.chdir(cwd+'/important records')
-api_key = '2bc149a1462246949a6e50540a139c3d'
+api_key = '397a87573a18418d95a150523d1f6f2d'
 # this function takes a list of tuples as an input and write each in a file
 
 def news_writer(news_list):
     os.chdir(cwd)
     f = open('alfred_window.txt','w')
     for i in news_list:
-        write('\n\nSource    :',i[0],file=f)	#Previously : print('\n\nSource    :',i[0],file=f)
-        write('Title     :',i[1],file=f)	#Previously : print('Title     :',i[1],file=f)
-       	write('Author    :',i[2],file=f)	#Previously : print('Author    :',i[2],file=f)
-        write('Summary   :',i[3],file=f)	#Previously : print('Summary   :',i[3],file=f)
+        f.write('\n\nSource    :',i[0])	#Previously : print('\n\nSource    :',i[0],file=f)
+        f.write('Title     :',i[1])	#Previously : print('Title     :',i[1],file=f)
+       	f.write('Author    :',i[2])	#Previously : print('Author    :',i[2],file=f)
+        f.write('Summary   :',i[3])	#Previously : print('Summary   :',i[3],file=f)
     f.close()
     os.startfile('alfred_window.txt')
     return
@@ -44,7 +44,7 @@ def give_me_news_name(news_sent):
         if news_list[i] == 'from':
             return news_list[i],news_list[i+1]
 
-        if news_list[i] == 'on':
+        if news_list[i] == 'on' or news_list[i] == 'of':
             return news_list[i],news_list[i+1]
     
     return ' '
